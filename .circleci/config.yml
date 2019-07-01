@@ -15,5 +15,5 @@ jobs:
             - run:
                 name: Check docker
                 command: |
-                docker info
-                docker run hello-world:nanoserver-1809
+                    docker info
+                    docker run hello-world:nanoserver-1809
