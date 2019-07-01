@@ -7,7 +7,7 @@ workflows:
 
 jobs:
     build:
-        machine:
+        docker:
             image: mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
             resource_class: windows.medium
             shell: powershell.exe -NoProfile -ExecutionPolicy Bypass
