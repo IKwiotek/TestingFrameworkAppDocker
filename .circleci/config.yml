@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-    win: sandbox/windows-tools@dev:preview
-
 workflows:
     build:
         jobs:
@@ -10,14 +7,15 @@ workflows:
 
 jobs:
     build:
-        docker:
-            - image: mcr.microsoft.com/dotnet/framework/sdk:4.8
+        machine:
+            image: mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
+            resource_class: windows.medium
+            shell: powershell.exe -NoProfile -ExecutionPolicy Bypass
         steps:
             - checkout
             - run:
-                name: Check docker
-                command: |
-                    docker info
-                    dotnet build --configuration Release
-                    TestingFrameworkAppDocker\bin\Release\TestingFrameworkAppDocker.exe
-
+                name: Build
+                command: dotnet build --configuration Release
+            - run:
+                name: Run
+                command: TestingFrameworkAppDocker\bin\Release\TestingFrameworkAppDocker.exe
