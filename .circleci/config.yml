@@ -18,3 +18,6 @@ jobs:
                 command: |
                     docker info
                     docker run mcr.microsoft.com/dotnet/framework/sdk:4.8
+                    dotnet build --configuration Release
+                    TestingFrameworkAppDocker\bin\Release\TestingFrameworkAppDocker.exe
+
