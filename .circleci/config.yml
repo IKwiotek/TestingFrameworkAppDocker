@@ -1,0 +1,24 @@
+version: 2.1
+
+orbs:
+    win: sandbox/windows-tools@dev:preview
+
+workflows:
+    build:
+        jobs:
+            - build
+
+jobs:
+    build:
+        machine:
+            image: mcr.microsoft.com/dotnet/framework/sdk:4.8
+            resource_class: windows.medium
+            shell: powershell.exe -NoProfile -ExecutionPolicy Bypass
+        steps:
+            - checkout
+            - run:
+                name: Build
+                command: dotnet build --configuration Release
+            - run:
+                name: Run
+                command: TestingFrameworkAppDocker\bin\Release\TestingFrameworkAppDocker.exe
