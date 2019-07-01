@@ -10,14 +10,14 @@ workflows:
 
 jobs:
     build:
-        executor: win/preview-default
+        docker:
+            - image: mcr.microsoft.com/dotnet/framework/sdk:4.8
         steps:
             - checkout
             - run:
                 name: Check docker
                 command: |
                     docker info
-                    docker run mcr.microsoft.com/dotnet/framework/sdk:4.8
                     dotnet build --configuration Release
                     TestingFrameworkAppDocker\bin\Release\TestingFrameworkAppDocker.exe
 
