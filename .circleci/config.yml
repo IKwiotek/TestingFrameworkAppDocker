@@ -8,7 +8,7 @@ workflows:
 jobs:
     build:
         docker:
-            image: mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
+            - image: mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
         steps:
             - checkout
             - run:
